@@ -12,5 +12,9 @@ struct dataset{
 
 void print(dataset &dat);
 
+void print(std::vector<std::string> &A);
+
 dataset read_dataset( std::string name);
+
+std::vector<std::string> read_stop_words(std::string file_name, bool read_first=false);
 
