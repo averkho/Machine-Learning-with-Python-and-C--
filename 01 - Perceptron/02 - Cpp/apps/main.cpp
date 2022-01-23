@@ -6,8 +6,8 @@
 
 int main(){
 
-    dataset train_dat=read_dataset("sentiment_train.tsv");
-    dataset test_dat=read_dataset("sentiment_test.tsv");
+    dataset train_dat=read_dataset("../data/sentiment_train.tsv");
+    dataset test_dat=read_dataset("../data/sentiment_test.tsv");
 
     print(test_dat);
 
