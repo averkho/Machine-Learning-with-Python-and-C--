@@ -2,6 +2,7 @@
 #include <read_data.h>
 #include <string>
 #include<vector>
+#include <preprocessing.h>
 
 
 int main(){
@@ -11,8 +12,12 @@ int main(){
     dataset test_dat=read_dataset("../data/sentiment_test.tsv");
 
     std::vector<std::string> stop_words=read_stop_words("../data/stopwords.txt");
+    
+    std::map<std::string,int> dictionary;
 
-    print(stop_words);
+    dictionary=bag_of_words(train_dat.texts,stop_words);
+
+    print(dictionary);
 
     return 0;
 }

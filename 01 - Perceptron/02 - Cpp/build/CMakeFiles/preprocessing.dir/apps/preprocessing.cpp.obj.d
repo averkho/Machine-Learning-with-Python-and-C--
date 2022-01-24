@@ -1,5 +1,5 @@
-CMakeFiles/main.dir/apps/main.cpp.obj: \
- C:\01\ -\ DEVELOPMENT\03\ -\ Online\ course\03\ -\ Machine\ Learning\ with\ Python\00\ -\ GitHub\Machine-Learning-with-Python-and-C--\01\ -\ Perceptron\02\ -\ Cpp\apps\main.cpp \
+CMakeFiles/preprocessing.dir/apps/preprocessing.cpp.obj: \
+ C:\01\ -\ DEVELOPMENT\03\ -\ Online\ course\03\ -\ Machine\ Learning\ with\ Python\00\ -\ GitHub\Machine-Learning-with-Python-and-C--\01\ -\ Perceptron\02\ -\ Cpp\apps\preprocessing.cpp \
  C:/msys64/mingw64/include/c++/10.3.0/iostream \
  C:/msys64/mingw64/include/c++/10.3.0/x86_64-w64-mingw32/bits/c++config.h \
  C:/msys64/mingw64/include/c++/10.3.0/x86_64-w64-mingw32/bits/os_defines.h \
@@ -135,20 +135,11 @@ CMakeFiles/main.dir/apps/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/10.3.0/bits/ostream.tcc \
  C:/msys64/mingw64/include/c++/10.3.0/istream \
  C:/msys64/mingw64/include/c++/10.3.0/bits/istream.tcc \
- C:/01-DEV~1/03-ONL~1/03-MAC~1/00-GIT~1/MACHIN~1/01-PER~1/02-CPP~1/include/read_data.h \
  C:/msys64/mingw64/include/c++/10.3.0/vector \
  C:/msys64/mingw64/include/c++/10.3.0/bits/stl_uninitialized.h \
  C:/msys64/mingw64/include/c++/10.3.0/bits/stl_vector.h \
  C:/msys64/mingw64/include/c++/10.3.0/bits/stl_bvector.h \
  C:/msys64/mingw64/include/c++/10.3.0/bits/vector.tcc \
- C:/msys64/mingw64/include/c++/10.3.0/fstream \
- C:/msys64/mingw64/include/c++/10.3.0/bits/codecvt.h \
- C:/msys64/mingw64/include/c++/10.3.0/x86_64-w64-mingw32/bits/basic_file.h \
- C:/msys64/mingw64/include/c++/10.3.0/x86_64-w64-mingw32/bits/c++io.h \
- C:/msys64/mingw64/include/c++/10.3.0/bits/fstream.tcc \
- C:/msys64/mingw64/include/c++/10.3.0/sstream \
- C:/msys64/mingw64/include/c++/10.3.0/bits/sstream.tcc \
- C:/01-DEV~1/03-ONL~1/03-MAC~1/00-GIT~1/MACHIN~1/01-PER~1/02-CPP~1/include/preprocessing.h \
  C:/msys64/mingw64/include/c++/10.3.0/map \
  C:/msys64/mingw64/include/c++/10.3.0/bits/stl_tree.h \
  C:/msys64/mingw64/include/c++/10.3.0/ext/aligned_buffer.h \
@@ -161,6 +152,8 @@ CMakeFiles/main.dir/apps/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/10.3.0/bits/invoke.h \
  C:/msys64/mingw64/include/c++/10.3.0/bits/stl_multimap.h \
  C:/msys64/mingw64/include/c++/10.3.0/bits/erase_if.h \
+ C:/msys64/mingw64/include/c++/10.3.0/sstream \
+ C:/msys64/mingw64/include/c++/10.3.0/bits/sstream.tcc \
  C:/msys64/mingw64/include/c++/10.3.0/algorithm \
  C:/msys64/mingw64/include/c++/10.3.0/bits/stl_algo.h \
  C:/msys64/mingw64/include/c++/10.3.0/bits/algorithmfwd.h \

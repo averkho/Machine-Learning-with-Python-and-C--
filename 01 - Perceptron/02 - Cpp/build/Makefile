@@ -129,6 +129,19 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
+# Target rules for targets named preprocessing
+
+# Build rule for target.
+preprocessing: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 preprocessing
+.PHONY : preprocessing
+
+# fast build rule for target.
+preprocessing/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\preprocessing.dir\build.make CMakeFiles/preprocessing.dir/build
+.PHONY : preprocessing/fast
+
+#=============================================================================
 # Target rules for targets named read_data
 
 # Build rule for target.
@@ -165,6 +178,30 @@ apps/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/apps/main.cpp.s
 .PHONY : apps/main.cpp.s
 
+apps/preprocessing.obj: apps/preprocessing.cpp.obj
+.PHONY : apps/preprocessing.obj
+
+# target to build an object file
+apps/preprocessing.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\preprocessing.dir\build.make CMakeFiles/preprocessing.dir/apps/preprocessing.cpp.obj
+.PHONY : apps/preprocessing.cpp.obj
+
+apps/preprocessing.i: apps/preprocessing.cpp.i
+.PHONY : apps/preprocessing.i
+
+# target to preprocess a source file
+apps/preprocessing.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\preprocessing.dir\build.make CMakeFiles/preprocessing.dir/apps/preprocessing.cpp.i
+.PHONY : apps/preprocessing.cpp.i
+
+apps/preprocessing.s: apps/preprocessing.cpp.s
+.PHONY : apps/preprocessing.s
+
+# target to generate assembly for a file
+apps/preprocessing.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\preprocessing.dir\build.make CMakeFiles/preprocessing.dir/apps/preprocessing.cpp.s
+.PHONY : apps/preprocessing.cpp.s
+
 apps/read_data.obj: apps/read_data.cpp.obj
 .PHONY : apps/read_data.obj
 
@@ -198,10 +235,14 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... main
+	@echo ... preprocessing
 	@echo ... read_data
 	@echo ... apps/main.obj
 	@echo ... apps/main.i
 	@echo ... apps/main.s
+	@echo ... apps/preprocessing.obj
+	@echo ... apps/preprocessing.i
+	@echo ... apps/preprocessing.s
 	@echo ... apps/read_data.obj
 	@echo ... apps/read_data.i
 	@echo ... apps/read_data.s

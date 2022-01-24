@@ -9,10 +9,17 @@ project(perceptron)
 
 add_library(read_data SHARED 
             apps/read_data.cpp)
+add_library(preprocessing SHARED 
+            apps/preprocessing.cpp)
 
 add_library(read_data::library ALIAS read_data)
+add_library(preprocessing::library ALIAS preprocessing)
 
 target_include_directories(read_data
+    PUBLIC 
+        ${PROJECT_SOURCE_DIR}/include
+)
+target_include_directories(preprocessing
     PUBLIC 
         ${PROJECT_SOURCE_DIR}/include
 )
@@ -24,4 +31,8 @@ add_executable(main
 target_link_libraries(main
     PRIVATE 
         read_data::library
+)
+target_link_libraries(main
+    PRIVATE 
+    preprocessing::library
 )
