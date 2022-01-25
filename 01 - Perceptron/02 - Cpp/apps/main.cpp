@@ -17,7 +17,13 @@ int main(){
 
     dictionary=bag_of_words(train_dat.texts,stop_words);
 
-    print(dictionary);
+    std::vector<std::vector<int>> train_features=make_feature_vector(train_dat.texts,dictionary);
+    std::vector<std::vector<int>> test_features=make_feature_vector(test_dat.texts,dictionary);
+
+    int n=test_dat.texts.size();
+    int m=dictionary.size();
+
+    //print(test_features,n,m);
 
     return 0;
 }

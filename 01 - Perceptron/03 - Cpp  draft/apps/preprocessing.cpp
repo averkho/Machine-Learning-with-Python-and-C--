@@ -20,6 +20,18 @@ void print(std::map<std::string,int> &D){
     }
 }
 
+void print(std::vector<std::vector<int>> &a, int n, int m){
+
+    for (int i=0; i<n; ++i){
+
+        for (int j=0; j<m; ++j){
+            std::cout << a[i][j] << "\t";
+        }
+        std::cout << std::endl;
+    }
+
+}
+
 std::vector<std::string> extract_words(std::string input_string){
 
     /*
@@ -108,6 +120,38 @@ std::map<std::string,int> bag_of_words(std::vector<std::string> &texts, std::vec
     return dictionary;
 }
 
+std::vector<std::vector<int>> make_feature_vector(std::vector<std::string> &texts, std::map<std::string,int> &dictionary){
+
+    int n=texts.size();
+    int m=dictionary.size();
+    std::vector<std::string> word_list;
+
+    std::vector<std::vector<int>> feature_vector(n,std::vector<int>(m,0));
+
+    //Initiate vector with zeros
+    
+
+    for (int i=0; i<n; ++i){
+
+        word_list=extract_words(texts[i]);
+
+        size_t size=word_list.size();
+
+        for (int j=0; j<size; ++j){
+
+            if (dictionary.find(word_list[j])!=dictionary.end()){
+                feature_vector[i][dictionary[word_list[j]]]=1;
+            }
+
+        }
+    }
+
+    
+
+
+    return feature_vector;
+}
+
 int main(){
 
     std::vector<std::string> texts;
@@ -121,7 +165,14 @@ int main(){
 
     dictionary=bag_of_words(texts,stops);
 
-    print(dictionary);
+    std::vector<std::vector<int>> train_features=make_feature_vector(texts,dictionary);
+
+    int n=texts.size();
+    int m=dictionary.size();
+
+    print(train_features,n,m); 
+
+    //print(dictionary);
     /*
     for (int i=0; i<texts.size(); ++i){
         std::cout << texts[i] << std::endl;

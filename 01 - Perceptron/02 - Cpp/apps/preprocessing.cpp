@@ -20,6 +20,18 @@ void print(std::map<std::string,int> &D){
     }
 }
 
+void print(std::vector<std::vector<int>> &a, int n, int m){
+
+    for (int i=0; i<n; ++i){
+        int s=0;
+        for (int j=0; j<m; ++j){
+            s+=a[i][j];
+        }
+        std::cout << s << std::endl;
+    }
+
+}
+
 std::vector<std::string> extract_words(std::string input_string){
 
     /*
@@ -107,26 +119,40 @@ std::map<std::string,int> bag_of_words(std::vector<std::string> &texts, std::vec
 
     return dictionary;
 }
-/*
-int main(){
 
-    std::vector<std::string> texts;
-    texts={"A series4 of escap!ades demon",
-    "quiet , 2introspective and entert2aining independent"};
+std::vector<std::vector<int>> make_feature_vector(std::vector<std::string> &texts, std::map<std::string,int> &dictionary){
 
-    std::vector<std::string> stops;
-    stops={"I","you"};
+    /*
+    Inputs a list of string texts
+    Inputs the dictionary of words as given by bag_of_words
+    Returns the bag-of-words feature matrix representation of the data.
+    The returned matrix is of shape (n, m), where n is the number of texts
+    and m the total number of entries in the dictionary.
+    */
 
-    std::map<std::string,int> dictionary;
+    int n=texts.size();
+    int m=dictionary.size();
+    std::vector<std::string> word_list;
 
-    dictionary=bag_of_words(texts,stops);
+    std::vector<std::vector<int>> feature_vector(n,std::vector<int>(m,0));
 
-    print(dictionary);
     
-    for (int i=0; i<texts.size(); ++i){
-        std::cout << texts[i] << std::endl;
+    for (int i=0; i<n; ++i){
+
+        word_list=extract_words(texts[i]);
+
+        size_t size=word_list.size();
+
+        for (int j=0; j<size; ++j){
+
+            if (dictionary.find(word_list[j])!=dictionary.end()){
+                feature_vector[i][dictionary[word_list[j]]]=1;
+            }
+
+        }
     }
-    
-    return 0;
+
+    return feature_vector;
+
 }
-*/
+
