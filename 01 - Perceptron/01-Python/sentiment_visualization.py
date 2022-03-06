@@ -328,5 +328,7 @@ ax.tick_params(axis='x', colors=Utils.purple_hex,labelsize=15)
 ax.tick_params(axis='y', colors=Utils.purple_hex,labelsize=15)
 plt.savefig('{}2.png'.format('./figures_2/'),dpi=400,transparent=True)
 
-
-
+def saving():
+    dat_to_save=pd.DataFrame(feature_matrix,columns=['x1','x2'])
+    dat_to_save['labels']=labels
+    dat_to_save.to_csv('../02 - Cpp perceptron/data/toy.csv',index=False)

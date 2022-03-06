@@ -10,9 +10,19 @@ struct dataset{
     std::vector<int> labels;
 };
 
+struct toy_dataset{
+    std::vector<double> x1;
+    std::vector<double> x2;
+    std::vector<int> label;
+};
+
 void print(dataset &dat);
 
 void print(std::vector<std::string> &A);
+
+void print(toy_dataset &dat);
+
+toy_dataset read_dataset(std::string name, bool read_first_row=false);
 
 dataset read_dataset( std::string name);
 

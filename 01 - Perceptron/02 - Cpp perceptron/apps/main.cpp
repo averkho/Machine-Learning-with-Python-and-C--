@@ -3,6 +3,8 @@
 #include <string>
 #include<vector>
 #include <preprocessing.h>
+#include <algorithms.h>
+
 
 
 int main(){
@@ -23,7 +25,9 @@ int main(){
     int n=test_dat.texts.size();
     int m=dictionary.size();
 
-    print(dictionary);
+    //print(dictionary);
+
+    perceptron_step()
 
     return 0;
 }

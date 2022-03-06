@@ -70,7 +70,7 @@ std::vector<std::string> extract_words(std::string input_string){
 
     while(std::getline(ss,word,' ')){
         std::for_each(word.begin(),word.end(),[](char &c){
-            c=::tolower(c);
+            c=::tolower(c); 
         });
        output_strings.push_back(word);
     }

@@ -1,45 +1,18 @@
-#include <iostream>
-#include<string>
-#include <vector>
-#include <algorithm>
-#include <sstream>
+#include <armadillo>
+
+// Input matrix of type float
 
 int main(){
 
-    //int m=10;
-    //int n=20;
-    //std::vector<std::vector <int>> A(n, std::vector<int>(m));
+  arma::fmat inMat;
 
-    std::string text="My Name is ";
+// Output matrices
+arma::fmat U;
+arma::fvec S;
+arma::fmat V;
 
-    std::vector<std::string> texts;
-    std::string line;
+// Perform SVD
+arma::svd(U, S, V, inMat);
 
-    std::stringstream ss(text);
-
-    
-
-    std::for_each(text.begin(),text.end(),[] (char & c){
-        c=::tolower(c);
-    });
-
-    //std::cout<< text;
-
-    
-
-    while(std::getline(ss,line,' ')){
-        
-        texts.push_back(line);
-
-    } 
-
-    
-
-    size_t n=texts.size();
-    for (int i=0; i<n; ++i){
-        std::cout << texts[i] << "\t";
-    }
-
-
-    return 0;
+  return 0;
 }

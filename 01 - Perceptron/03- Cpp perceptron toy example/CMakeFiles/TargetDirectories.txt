@@ -1,0 +1,6 @@
+C:/01 - DEVELOPMENT/03 - Online course/03 - Machine Learning with Python/00 - GitHub/Machine-Learning-with-Python-and-C--/01 - Perceptron/03- Cpp perceptron toy example/CMakeFiles/rebuild_cache.dir
+C:/01 - DEVELOPMENT/03 - Online course/03 - Machine Learning with Python/00 - GitHub/Machine-Learning-with-Python-and-C--/01 - Perceptron/03- Cpp perceptron toy example/CMakeFiles/main.dir
+C:/01 - DEVELOPMENT/03 - Online course/03 - Machine Learning with Python/00 - GitHub/Machine-Learning-with-Python-and-C--/01 - Perceptron/03- Cpp perceptron toy example/CMakeFiles/algorithms.dir
+C:/01 - DEVELOPMENT/03 - Online course/03 - Machine Learning with Python/00 - GitHub/Machine-Learning-with-Python-and-C--/01 - Perceptron/03- Cpp perceptron toy example/CMakeFiles/preprocessing.dir
+C:/01 - DEVELOPMENT/03 - Online course/03 - Machine Learning with Python/00 - GitHub/Machine-Learning-with-Python-and-C--/01 - Perceptron/03- Cpp perceptron toy example/CMakeFiles/edit_cache.dir
+C:/01 - DEVELOPMENT/03 - Online course/03 - Machine Learning with Python/00 - GitHub/Machine-Learning-with-Python-and-C--/01 - Perceptron/03- Cpp perceptron toy example/CMakeFiles/read_data.dir
