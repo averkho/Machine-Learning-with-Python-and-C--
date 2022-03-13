@@ -50,7 +50,7 @@ class Utils:
     
     
 random_seed=1000    
-covariances=list(np.linspace(0,0.99,10))
+covariances=[0,0.5,0.8,0.99]
 means=np.array([0,0])
 pdf_list=[]
 
@@ -71,12 +71,45 @@ for idx,cov in enumerate(covariances):
             
             pdf[i,j]=distribution.pdf([X[i,j],Y[i,j]])
     
+    pdf_list.append(pdf)
+    
     fig=plt.figure(idx,figsize=(10,10))
     fig.patch.set_facecolor(Utils.black_hex)
     ax=fig.add_subplot(111,projection='3d')
     ax.plot_surface(X,Y,pdf,cmap='viridis')
     ax.set_facecolor(Utils.black_hex)
+    for spine in ax.spines.values():
+        spine.set_edgecolor(Utils.white_hex)
+        spine.set(linewidth=3)
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.set_title('Covariance is {}'.format(cov),color=Utils.purple_hex,
+                 fontproperties={'family':Utils.csfont,'size':20})
+    ax.tick_params(axis='x', colors=Utils.purple_hex,labelsize=15)
+    ax.tick_params(axis='y', colors=Utils.purple_hex,labelsize=15)
+    ax.tick_params(axis='z', colors=Utils.purple_hex,labelsize=15)
 
-
-
+for i in range(len(covariances)):
+    
+    idx+=1
+    
+    fig=plt.figure(idx,figsize=(10,10))
+    fig.patch.set_facecolor(Utils.black_hex)
+    ax=fig.add_subplot(111)
+    ax.contourf(X,Y,pdf_list[i],cmap='viridis')
+    ax.set_xlabel('x1',color=Utils.purple_hex,fontweight='bold',
+                      fontproperties={'family':Utils.csfont,'size':20})
+    ax.set_ylabel('x2',color=Utils.purple_hex,fontweight='bold',
+                      fontproperties={'family':Utils.csfont,'size':20})
+    
+    ax.tick_params(axis='x', colors=Utils.purple_hex,labelsize=15)
+    ax.tick_params(axis='y', colors=Utils.purple_hex,labelsize=15)
+    ax.set_title('Covariance is {}'.format(covariances[i]),color=Utils.purple_hex,
+                 fontproperties={'family':Utils.csfont,'size':20})
+    
+    plt.savefig(f'{path_to_2d_figures}{i}.png',dpi=400,transparent=True)
+    
+    
+    
+    
 
