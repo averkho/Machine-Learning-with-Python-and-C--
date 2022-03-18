@@ -59,7 +59,7 @@ def regression_sklearn():
     ax.grid(True,**Utils.grid_kwargs)
     plt.tight_layout()
     
-def regresion_closed_form(dat):
+def regresion_closed_form_solution(dat):
     
     '''
     Closed form solution for regression. 
@@ -67,7 +67,14 @@ def regresion_closed_form(dat):
     theta=(X^T*X)^(-1)*X^T*y
     
     X - feature matrix (n*(d+1))
-    y - 
+    y - vector (n*1)
+    d - number of features
+    n - number of samples
+    
+    return 
+
+    y_pred - vector of predicted values (n*1)
+    theta - vector of parameters ((d+1)*1)
     
     '''
     
@@ -80,13 +87,6 @@ def regresion_closed_form(dat):
     y_pred=np.matmul(X,theta)
     
     return y_pred,theta
-    
-    
-    
-#X=np.array(dat['Temp'])
-#y=np.array(dat['MW out'])
-
-
 
 
 if __name__=="__main__":
@@ -95,7 +95,7 @@ if __name__=="__main__":
     regression_sklearn()
     
      
-    y_pred,theta=regresion_closed_form(dat)
+    y_pred,theta=regresion_closed_form_solution(dat)
     
     
 
