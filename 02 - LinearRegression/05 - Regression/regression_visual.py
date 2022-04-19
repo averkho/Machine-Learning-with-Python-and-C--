@@ -19,6 +19,82 @@ np.random.seed(528)
 
 MAX_COMPLEXITY=10
 
+class BaseModel:
+    
+    def __init__(self,model):
+        
+        self.model=model
+    
+    def __fit__(self,X,y,complexity):
+        
+        X=X[X.columns[:complexity]]
+      
+        X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.33,shuffle=True)
+        
+        self.lr.fit(X_train.values,y_train.values.reshape(-1,1))
+        
+        pred_train=self.lr.predict(X_train.values)
+        pred_test=self.lr.predict(X_test.values)
+        
+        #mse[]
+        
+        mse_train=np.round(mean_squared_error(y_train,pred_train),1)
+        mse_test=np.round(mean_squared_error(y_test,pred_test),2)
+        
+        pred_train=pd.DataFrame(pred_train,columns=['predicted'])
+        pred_train['x']=X_train['x'].values
+        
+        pred_train=pred_train.sort_values(by='x',ascending=True)
+        pred_train.reset_index(inplace=True,drop=True)
+        
+        if self.l1_ratio:
+            
+            return mse_train,mse_test,pd.DataFrame(self.lr.coef_)
+        
+        elif self.l1!=None:
+            
+            return mse_train,mse_test,pd.DataFrame(self.lr.coef_)
+            
+        return mse_train,mse_test,pd.DataFrame(self.lr.coef_).T
+    
+class Regression(BaseModel):
+    
+    def __init__(self,l1=None,l2=None,l1_ratio=None):
+        
+        
+        
+        super().__init__(self)
+        
+        self.l1_ratio=l1_ratio
+        self.l1=l1
+        self.l2=l2
+        
+        if l1==None and l2!=None and l1_ratio==None:
+            
+            self.lr=Ridge(l2)
+        
+        elif l1!=None and l2==None and l1_ratio==None:
+            
+            self.lr=Lasso(l1)
+            
+                    
+        elif l1==None and l2==None and l1_ratio==None:
+            
+            self.lr=LinearRegression()
+        
+        elif l1!=None and l1_ratio!=None:
+            
+            self.lr=ElasticNet(alpha=l1,l1_ratio=l1_ratio)
+        
+        else:
+            
+            raise ValueError('You have to specify either l1 or l2.')
+        
+    def fit(self,X,y,complexity):
+    
+        
+        return self.__fit__(X,y,complexity)
+        
 def create_data():
     
     '''
@@ -218,6 +294,33 @@ def plot_lines(MSE_train_test,col1='mse_train',col2='mse_test',model='Linear Reg
     ax.set_title('Error and model complexity of {}'.format(model),color=Utils.purple_hex,
                      fontproperties={'family':Utils.csfont,'size':20})
     ax.legend()
+    
+
+def main(X,y,l1=None,l2=None,l1_ratio=None):
+    
+    
+    model=Regression(l1,l2,l1_ratio)
+    
+    MSE_train,MSE_test=[],[]
+    
+    COEF_=pd.DataFrame()
+    
+    for j in range(1,MAX_COMPLEXITY):
+        
+        mse_train,mse_test,coefficients=model.fit(X,y,complexity=j)
+        MSE_train.append(mse_train)
+        MSE_test.append(mse_test)
+        COEF_=pd.concat([coefficients,COEF_],axis=1)
+        print(COEF_)
+    
+    COEF=COEF_.copy(deep=True)
+    COEF=COEF.fillna(0)
+    
+    return MSE_train, MSE_test,COEF
+    
+    
+    
+    
 
 if __name__=="__main__":
     
@@ -272,11 +375,17 @@ if __name__=="__main__":
         
     MSE_train,MSE_test=[],[]
     
+    COEF=pd.DataFrame()
+    
     for j in range(1,MAX_COMPLEXITY):
         
         mse_train,mse_test,coefficients=fit_regularization_model(X,y,complexity=j,l1=1)
         MSE_train.append(mse_train)
         MSE_test.append(mse_test)
+        COEF=pd.concat([coefficients,COEF],axis=1)
+    
+    COEF_lasso=COEF.copy(deep=True)
+    COEF_lasso=COEF_ridge.fillna(0)
     
     MSE_train_test['lasso_mse_train']=MSE_train
     MSE_train_test['lasso_mse_test']=MSE_test
@@ -298,6 +407,31 @@ if __name__=="__main__":
     plot_lines(MSE_train_test,col1='lasso_mse_train',col2='lasso_mse_test',model='Lasso Regression',i=2)
     plot_lines(MSE_train_test,col1='elastic_mse_train',col2='elastic_mse_test',model='Elastic Regression',i=3)
     
+    '''
+    
+    Linear Regression
+    
+    '''
+    
+    MSE_train, MSE_test,COEF_linear=main(X,y,l1=None,l2=None)
+    
+    '''
+    Lasso regression
+    
+    '''
+    
+    MSE_train, MSE_test,COEF_lasso=main(X,y,l1=1)
+    
+    '''
+    Ridge regression
+    
+    '''
+    
+    MSE_train, MSE_test,COEF_ridge=main(X,y,l2=1)
     
     
+    '''
+    Elastic Net 
+    '''
     
+    MSE_train, MSE_test,COEF_elastic=main(X,y,l1=1,l1_ratio=0.5)
