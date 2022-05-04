@@ -19,7 +19,7 @@ def main():
     
     # build and print CART decision tree
     Cart(data).visualise_model()
-
+    
     # test accuracy 10 times and display the results
     acc_scores = []
     for i in range(0,10):
@@ -43,4 +43,4 @@ if __name__ == '__main__':
     
     dat=pd.read_csv('./owls15.csv')
     
-    Cart(data).visualise_model()
+    

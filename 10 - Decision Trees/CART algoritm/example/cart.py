@@ -72,6 +72,7 @@ class Cart(object):
 
         uncertainty = 1
         # init uncertainty to 1 and reduce every time we hit some uncertainty
+        
         count_of_labels = Counter([row[-1] for row in data])
         
         num_instances = len(data)
@@ -92,8 +93,7 @@ class Cart(object):
 
         uncert_lhs = self._calc_uncertainty(lhs_data)
         uncert_rhs = self._calc_uncertainty(rhs_data)
-        print('left uncertainty ',uncert_lhs)
-        print(' right uncertainty',uncert_rhs)
+        
         new_uncert = weight_lhs*uncert_lhs + weight_rhs*uncert_rhs
         return cur_uncert - new_uncert
 
@@ -118,10 +118,10 @@ class Cart(object):
             unique_values = self._calc_unique_values(data, attr_id)
             
             for val in unique_values:
-                print('Value ',val)
+                
                 question = _Question(attr_id, val)
                 true_instances, false_instances = self._split_data(data, question)
-
+                
                 if max(len(true_instances), len(false_instances)) >= len(data):
                     # we didn't split the data at all so skip this one
                     continue
@@ -139,18 +139,17 @@ class Cart(object):
         
         true_data = [row for row in data if question.check_answer(row)]
         false_data = [row for row in data if not question.check_answer(row)]
-                
+        
         return true_data, false_data
 
     def _create_tree(self, data):
         # find best way we can split the data
         info_gain, question = self._calc_best_split(data)
-        print(info_gain,question)
-        assert(1/0)
-
+       
+        print('info_gain ',info_gain)
         if info_gain == 0:
             return _Leaf(data)
-
+        print('info_gain ',info_gain)
         true_data, false_data = self._split_data(data, question)
 
         true_subtree = self._create_tree(true_data)
