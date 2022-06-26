@@ -33,3 +33,5 @@ class Utils:
     
     ax_kwargs={'color':purple_hex,'fontweight':'bold','fontproperties':{'family':csfont,'size':20}}
     grid_kwargs={'color':white_hex,'linestyle':'--'}
+    i=10
+    
