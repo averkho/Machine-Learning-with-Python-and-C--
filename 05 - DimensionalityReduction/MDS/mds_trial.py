@@ -78,5 +78,3 @@ X,y = make_blobs(100,n_features = 3)
 fig = plt.figure(2)
 ax = fig.add_subplot(111)
 plot_2d(S_scaling, S_color, "Multidimensional scaling")
-
-A=10
