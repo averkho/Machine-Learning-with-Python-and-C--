@@ -79,3 +79,5 @@ plot_2d(3,S_scaling, S_color, "Multidimensional scaling")
 S_scaling = md_scaling.fit_transform(X)
 plot_2d(4,S_scaling, S_color, "Multidimensional scaling")
 
+A = 10
+
