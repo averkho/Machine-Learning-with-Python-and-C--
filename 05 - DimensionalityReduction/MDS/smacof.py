@@ -24,6 +24,28 @@ def _smacof_single(
         max_iter = 300,
         ):
     
+    old_stress = None
+    
+    for it in range(max_iter):
+        
+        dis = pairwise_distances(X)
+        
+        if metric:
+            
+            disparities = dissimilarities
+        
+        else:
+            pass
+        
+        #Stress computing
+        stress = ((dis.ravel() - disparities.ravel())**2).sum() / 2
+        
+        # Update X using the Guttman transform
+        dis[dis == 0] = 1e-5
+        ratio = disparities / dis
+        B = -ratio
+        print(B)
+    
     
 
 def smacof(dissimilarities,
