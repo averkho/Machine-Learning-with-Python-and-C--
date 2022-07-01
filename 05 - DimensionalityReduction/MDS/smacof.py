@@ -57,8 +57,16 @@ def _smacof_single(
         B = -ratio
         B[np.arange(len(B)),np.arange(len(B))] += ratio.sum()
         X = 1.0 / n_samples * np.dot(B,X)
+        dis = np.sqrt((X**2).sum(axis = 1)).sum()
         
-        assert(1/0)
+        if old_stress is not None:
+            
+            if (old_stress - stress/dis) < eps:
+                
+                break
+        old_stress = stress / dis      
+                
+        return X,stress,it+1 
     
 
 def smacof(dissimilarities,
@@ -74,7 +82,7 @@ def smacof(dissimilarities,
            random_state = None,
            return_n_iter = False,
            ):
-        
+    print(random_state)
     best_stress,best_pos = None, None
     
     for i in range(n_init):
@@ -93,6 +101,11 @@ def smacof(dissimilarities,
             best_stress = stress
             best_pos = pos.copy()
             best_iter = n_iter_
+    
+    if return_n_iter:
+        return best_pos, best_stress, best_iter
+    else:
+        return best_pos, best_stress
             
             
 class MDS():
@@ -151,14 +164,17 @@ class MDS():
             return_n_iter = True,
             )
         
-        return self
+        return self.emdedding_
     
 
 mds = MDS()
 
-mds.fit_transform(X)
+t = mds.fit_transform(X)
     
-    
+from sklearn.manifold import MDS
+
+mds = MDS(n_components=2)
+c = mds.fit_transform(X)
     
     
     
