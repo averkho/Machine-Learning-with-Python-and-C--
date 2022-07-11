@@ -15,7 +15,7 @@ struct smacof_output{
 
 std::vector <std::vector <double> > upper_triangle(int n_samples)
 {   
-    n_samples = 5;
+    // function to create upper triangle matrix filled with 1, having size (n_samples x n_samples)
     std::vector <std::vector <double> > sim_flat;
     int count { 0 };
 
@@ -41,6 +41,51 @@ std::vector <std::vector <double> > upper_triangle(int n_samples)
     return sim_flat;
 }
 
+bool check_for_elementwise_multiplication(
+    std::vector <std::vector <double> > &v1,
+    std::vector <std::vector <double> > &v2
+)
+{
+    if (v1.size() == v2.size() && v1[0].size() == v2[0].size())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+std::vector <std::vector <double> > element_wise_multiplication (
+    std::vector <std::vector <double> > &v1,
+    std::vector <std::vector <double> > &v2
+)
+{
+    if (check_for_elementwise_multiplication(v1,v2) == false)
+    {
+        throw std::invalid_argument("Inconsistent size of matrixes");
+    }
+    
+    size_t n = v1.size();
+    size_t m = v1[0].size();
+    std::vector < std::vector <double> > sim_flat;
+
+    for (size_t i = 0; i < n; ++i)
+    {   
+        std::vector <double> v;
+
+        for (size_t j = 0; j < m; ++j)
+        {
+            v.push_back(v1[i][j] * v2[i][j]);
+        }
+
+        sim_flat.push_back(v);
+    }
+
+    return sim_flat;
+}
+
+
 void single_smacof (std::vector <std::vector <double> > dissimilarities,
                             bool metric = true,
                             int n_components = 2,
@@ -52,7 +97,21 @@ void single_smacof (std::vector <std::vector <double> > dissimilarities,
     {
         int n_samples = dissimilarities.size();
         std::vector <std::vector <double> > sim_flat = upper_triangle(n_samples);
-        print(sim_flat);
+        sim_flat = element_wise_multiplication(sim_flat,dissimilarities);
+        std::vector <double> sim_flat_w;
+        
+        for (size_t i = 0; i < n_samples; ++i)
+        {
+            for (size_t j = 0; j < n_samples; ++j)
+            {   
+                if (sim_flat[i][j] != 0)
+                {
+                    sim_flat_w.push_back(sim_flat[i][j]);
+                }
+            }
+        }
+        
+    
 
     }
 
