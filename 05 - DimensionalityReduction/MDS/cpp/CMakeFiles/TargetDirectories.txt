@@ -1,0 +1,6 @@
+/home/alexander/DataScience/Machine-Learning-with-Python-and-C--/05 - DimensionalityReduction/MDS/cpp/CMakeFiles/rebuild_cache.dir
+/home/alexander/DataScience/Machine-Learning-with-Python-and-C--/05 - DimensionalityReduction/MDS/cpp/CMakeFiles/edit_cache.dir
+/home/alexander/DataScience/Machine-Learning-with-Python-and-C--/05 - DimensionalityReduction/MDS/cpp/CMakeFiles/main.exe.dir
+/home/alexander/DataScience/Machine-Learning-with-Python-and-C--/05 - DimensionalityReduction/MDS/cpp/CMakeFiles/utils.dir
+/home/alexander/DataScience/Machine-Learning-with-Python-and-C--/05 - DimensionalityReduction/MDS/cpp/CMakeFiles/math.dir
+/home/alexander/DataScience/Machine-Learning-with-Python-and-C--/05 - DimensionalityReduction/MDS/cpp/CMakeFiles/getData.dir
