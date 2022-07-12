@@ -2,6 +2,8 @@
 #include <string>
 #include <cmath>
 #include <stdexcept>
+#include <random>
+#include <ctime>
 
 #include <getData.h>
 #include <math.h>
@@ -85,6 +87,22 @@ std::vector <std::vector <double> > element_wise_multiplication (
     return sim_flat;
 }
 
+double stress_computing(std::vector<std::vector <double>> &dis,
+                        std::vector<std::vector<double>> &disparities)
+{
+    double stress;
+    size_t n = dis.size();
+    
+    for (size_t i = 0; i < n; ++i)
+    {
+        size_t m = dis[i].size();
+        for (size_t j = 0; j < m; ++j)
+        {
+            
+        }
+    }
+    //stress = ((dis.ravel() - disparities.ravel()) ** 2).sum() / 2
+}
 
 void single_smacof (std::vector <std::vector <double> > dissimilarities,
                             bool metric = true,
@@ -111,7 +129,29 @@ void single_smacof (std::vector <std::vector <double> > dissimilarities,
             }
         }
         
-    
+        std::vector <std::vector <double> > X;
+        if (init == -1)
+        {
+            X = get_random_uniform(n_components, n_samples);
+        }
+
+        double old_stress { -1 };
+        double stress;
+        
+
+        for (size_t it = 0; it < max_iter; ++it)
+        {
+            std::vector <std::vector <double>> dis = euclidianDistances(X);
+            std::vector<std::vector<double>> disparities;
+            if (metric)
+            {
+                disparities = dissimilarities;
+            }
+
+            stress = stress_computing(dis,disparities);
+
+            
+        }
 
     }
 

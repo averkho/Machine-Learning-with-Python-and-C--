@@ -1,6 +1,8 @@
 // uniform_real_distribution
 #include <iostream>
 #include <random>
+#include <cstdlib>
+#include <ctime>
 
 int main()
 {
@@ -8,7 +10,9 @@ int main()
   const int nstars=95;     // maximum number of stars to distribute
   const int nintervals=10; // number of intervals
 
-  std::default_random_engine generator;
+  //std::srand(time(0));
+
+  std::default_random_engine generator(time(0));
   std::uniform_real_distribution<double> distribution(0.0,1.0);
 
   int p[nintervals]={};
@@ -19,13 +23,13 @@ int main()
     std::cout << number << std::endl;
   }
 
-  std::cout << "uniform_real_distribution (0.0,1.0):" << std::endl;
-  std::cout << std::fixed; std::cout.precision(1);
+  //std::cout << "uniform_real_distribution (0.0,1.0):" << std::endl;
+  //std::cout << std::fixed; std::cout.precision(1);
 
-  for (int i=0; i<nintervals; ++i) {
-    std::cout << float(i)/nintervals << "-" << float(i+1)/nintervals << ": ";
-    std::cout << std::string(p[i]*nstars/nrolls,'*') << std::endl;
-  }
+  //for (int i=0; i<nintervals; ++i) {
+  //  std::cout << float(i)/nintervals << "-" << float(i+1)/nintervals << ": ";
+  //  std::cout << std::string(p[i]*nstars/nrolls,'*') << std::endl;
+  //}
 
   return 0;
 }
