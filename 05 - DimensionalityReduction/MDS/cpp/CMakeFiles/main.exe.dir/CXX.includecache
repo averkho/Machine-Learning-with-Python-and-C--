@@ -1,0 +1,48 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/alexander/DataScience/Machine-Learning-with-Python-and-C--/05 - DimensionalityReduction/MDS/cpp/main.cpp
+iostream
+-
+string
+-
+cmath
+-
+stdexcept
+-
+random
+-
+ctime
+-
+getData.h
+-
+math.h
+-
+utils.h
+-
+
+include/getData.h
+vector
+-
+string
+-
+
+include/math.h
+iostream
+-
+vector
+-
+cmath
+-
+
+include/utils.h
+vector
+-
+string
+-
+

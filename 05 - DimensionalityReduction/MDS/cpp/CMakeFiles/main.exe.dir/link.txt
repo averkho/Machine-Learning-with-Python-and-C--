@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/main.exe.dir/main.cpp.o  -o main.exe  -Wl,-rpath,"/home/alexander/DataScience/Machine-Learning-with-Python-and-C--/05 - DimensionalityReduction/MDS/cpp" libgetData.so libmath.so libutils.so 
